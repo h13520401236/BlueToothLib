@@ -109,11 +109,11 @@ public class ConnectEntity {
                     break;
                 //写入UTC
                 case MSG_WRITE_UTC:
-//                    writeUTC();
+                    writeUTC();
                     break;
                 //获取firmware版本信息
                 case MSG_READ_FIRMWARE:
-//                    readFirmwareVersion();
+                    readFirmwareVersion();
                     break;
                 case MSG_NOTIFY_PRIVATE_SERVICE:
                     notifyPrivateService();
