@@ -314,12 +314,16 @@ public class ConnectEntity {
                 //notify 心率
                 sendMsg(MSG_NOTIFY_HR, true, DELAY_REPEAT_NOTIFY + DELAY_REPEAT_WRITE);
 
-            }else if (mManufacturer.equals("YYX")){
+            } else if (mManufacturer.equals("YYX")) {
                 NotifyManager.getManager().notifyStateChange(ConnectStates.CHECK_MANUFACTURER_OK);
                 //notify 心率
                 sendMsg(MSG_NOTIFY_HR, true, DELAY_REPEAT_NOTIFY + DELAY_REPEAT_WRITE);
 
-            }else {
+            } else if (mManufacturer.equals("TBD")) {
+                NotifyManager.getManager().notifyStateChange(ConnectStates.CHECK_MANUFACTURER_OK);
+                //notify 心率
+                sendMsg(MSG_NOTIFY_HR, true, DELAY_REPEAT_NOTIFY + DELAY_REPEAT_WRITE);
+            } else {
                 NotifyManager.getManager().notifyStateChange(ConnectStates.CHECK_MANUFACTURER_FAIL);
             }
             return;
@@ -386,7 +390,7 @@ public class ConnectEntity {
             if (data.length > 5) {
                 speed = data[5] & 0xff;
             }
-        }else if (mManufacturer.equals("YYX")){
+        } else if (mManufacturer.equals("YYX")) {
             if (data.length > 3) {
                 stepCount = ((data[2] & 0xff) | ((data[3] & 0xff) << 8));
             }
@@ -569,7 +573,7 @@ public class ConnectEntity {
      */
     private void writeVibrate() {
         byte[] data = new byte[]{FizzoCMDs.ACTION_TAG_ACTIVE, FizzoCMDs.CMD_SETTING_VIBRATE};
-        if (mFizzoPrivateC != null){
+        if (mFizzoPrivateC != null) {
             mFizzoPrivateC.setValue(data);
             boolean writeSuccess = mBluetoothGatt.writeCharacteristic(mFizzoPrivateC);
             if (!writeSuccess) {
