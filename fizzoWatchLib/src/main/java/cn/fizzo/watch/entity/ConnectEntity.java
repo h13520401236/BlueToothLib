@@ -400,6 +400,16 @@ public class ConnectEntity {
             if (data.length > 5) {
                 speed = data[5] & 0xff;
             }
+        }else if (mManufacturer.equals("TBD")){
+            if (data.length > 3) {
+                stepCount = ((data[2] & 0xff) | ((data[3] & 0xff) << 8));
+            }
+            if (data.length > 4) {
+                cadence = data[4] & 0xff;
+            }
+            if (data.length > 5) {
+                speed = data[5] & 0xff;
+            }
         }
 
 
